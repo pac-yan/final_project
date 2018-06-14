@@ -2,7 +2,7 @@
 
 #include "parser.h"
 #include "symtab.h"
-#include "y.tab.h"
+//#include "y.tab.h"
 
 
 
