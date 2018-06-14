@@ -145,8 +145,3 @@ struct vary_node ** second_pass();
 void print_pcode();
 void my_main();
 #endif
-
-
-
-
-

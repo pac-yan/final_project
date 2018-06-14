@@ -32,7 +32,6 @@ struct stack * new_stack() {
 /*======== struct matix *peek() ==========
   Inputs:   struct stack *s  
   Returns: 
-
   Returns a reference to the matrix at the 
   top of the stack
   ====================*/
@@ -43,7 +42,6 @@ struct matrix * peek( struct stack *s ) {
 /*======== void push() ==========
   Inputs:   struct stack *s  
   Returns: 
-
   Puts a new matrix on top of s
   The new matrix should be a copy of the curent
   top matrix
@@ -81,7 +79,6 @@ void pop( struct stack * s) {
 /*======== void free_stack() ==========
   Inputs:   struct stack *s 
   Returns: 
-
   Deallocate all the memory used in the stack
   ====================*/
 void free_stack( struct stack *s) {
