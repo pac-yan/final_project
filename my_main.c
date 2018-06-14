@@ -208,7 +208,7 @@ double get_val(struct vary_node *n, char *name) {
   ====================*/
 void my_main() {
 
-  int x;
+  int x,y;
   struct matrix *tmp;
   struct stack *systems;
   screen t;
@@ -266,10 +266,10 @@ void my_main() {
   
   first_pass();
   if (num_frames > 1) knobs = second_pass();
-  for (j = 0; j < num_frames; j ++) {
-    printf("Frame %d:03d/%03d:\n", j + 1, num_frames);
+  for (y = 0; y < num_frames; y ++) {
+    printf("Frame %d:03d/%03d:\n", y + 1, num_frames);
     if (num_frames > 1) {
-      struct vary_node *current_node = knobs[j];
+      struct vary_node *current_node = knobs[y];
       while (current_node) {
 	set_value(lookup_symbol(current_node->name), current_node->value);
 	current_node = current_node->next;
