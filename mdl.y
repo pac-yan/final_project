@@ -29,7 +29,7 @@
 %token <val> DOUBLE
 %token <string> LIGHT AMBIENT
 %token <string> CONSTANTS SAVE_COORDS CAMERA
-%token <string> SPHERE TORUS BOX LINE CS MESH TEXTURE
+%token <string> SPHERE TORUS CYLINDER CONE BOX LINE CS MESH TEXTURE
 %token <string> STRING
 %token <string> SET MOVE SCALE ROTATE BASENAME SAVE_KNOBS TWEEN FRAMES VARY
 %token <string> PUSH POP SAVE GENERATE_RAYFILES
@@ -203,6 +203,38 @@ BOX DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE STRING
   op[lastop].op.box.cs = add_symbol($8,SYM_MATRIX,m);
   lastop++;
 }|
+CYLINDER DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
+{
+  lineno++;
+  op[lastop].opcode = CYLINDER;
+  op[lastop].op.cylinder.d[0] = $2;
+  op[lastop].op.cylinder.d[1] = $3;
+  op[lastop].op.cylinder.d[2] = $4;
+  op[lastop].op.cylinder.d[3] = 0;
+  op[lastop].op.cylinder.r = $5;
+  op[lastop].op.cylinder.h = $6;
+  op[lastop].op.cylinder.constants = NULL;
+  op[lastop].op.cylinder.cs = NULL;
+
+  lastop++;
+}|
+
+CONE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
+{
+  lineno++;
+  op[lastop].opcode = CONE;
+  op[lastop].op.cone.d[0] = $2;
+  op[lastop].op.cone.d[1] = $3;
+  op[lastop].op.cone.d[2] = $4;
+  op[lastop].op.cone.d[3] = 0;
+  op[lastop].op.cone.r = $5;
+  op[lastop].op.cone.h = $6;
+  op[lastop].op.cone.constants = NULL;
+  op[lastop].op.cone.cs = NULL;
+
+  lastop++;
+}|
+
 BOX STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
 {
   lineno++;

@@ -16,6 +16,8 @@ void draw_polygons( struct matrix * points, screen s, zbuffer zb,
                     double *areflect, double *dreflect, double *sreflect);
 
 //3d shapes
+void add_cylinder(struct matrix * polygons, double bx, double by, double bz, double r, double h, int i);
+void add_cone(struct matrix * polygons, double bx, double by, double bz, double r, double h, int i);
 void add_box( struct matrix * edges,
               double x, double y, double z,
               double width, double height, double depth );

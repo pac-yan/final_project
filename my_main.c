@@ -30,7 +30,7 @@
 #include <string.h>
 #include "parser.h"
 #include "symtab.h"
-//#include "y.tab.h"
+#include "y.tab.h"
 
 #include "matrix.h"
 #include "ml6.h"
@@ -354,6 +354,42 @@ void my_main() {
 	  matrix_mult( peek(systems), tmp );
 	  draw_polygons(tmp, t, zb, view, light, ambient,
 			areflect, dreflect, sreflect);
+	  tmp->lastcol = 0;
+	  break;
+	case CYLINDER:
+	  if (op[x].op.cylinder.constants != NULL)
+	    {
+	      //printf("\tconstants: %s",op[x].op.cylinder.constants->name);
+	    }
+	  if (op[x].op.cylinder.cs != NULL)
+	    {
+	      //printf("\tcs: %s",op[x].op.cylinder.cs->name);
+	    }
+	  add_cylinder(tmp,
+		       op[x].op.cylinder.d[0],
+		       op[x].op.cylinder.d[1],
+		       op[x].op.cylinder.d[2],
+		       op[x].op.cylinder.r,op[x].op.cylinder.h, step_3d);
+	  matrix_mult( peek(systems), tmp );
+	  draw_polygons(tmp, t, zb, view, light, ambient, areflect, dreflect, sreflect);
+	  tmp->lastcol = 0;
+	  break;  
+	case CONE:
+	  if (op[x].op.cone.constants != NULL)
+	    {
+	      //printf("\tconstants: %s",op[x].op.cylinder.constants->name);
+	    }
+	  if (op[x].op.cone.cs != NULL)
+	    {
+	      //printf("\tcs: %s",op[x].op.cylinder.cs->name);
+	    }
+	  add_cone(tmp,
+		   op[x].op.cone.d[0],
+		   op[x].op.cone.d[1],
+		   op[x].op.cone.d[2],
+		   op[x].op.cone.r,op[x].op.cone.h, step_3d);
+	  matrix_mult(peek(systems),tmp);
+	  draw_polygons(tmp, t, zb, view, light, ambient, areflect, dreflect, sreflect);
 	  tmp->lastcol = 0;
 	  break;
 	case BOX:

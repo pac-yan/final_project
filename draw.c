@@ -195,6 +195,79 @@ void draw_polygons(struct matrix *polygons, screen s, zbuffer zb,
     }
   }
 }
+/*======== void add_cylinder() ==========
+Inputs:   double cx
+double cy
+double cz
+double r
+double h
+int i
+
+generates points for a cylinder with center(cx, cy, cz)and
+radius(r) and height(h).
+====================*/
+void add_cylinder(struct matrix * polygons, double bx, double by, double bz, double r, double h, int i )
+{
+  struct matrix *points = new_matrix(4, i * i);
+  double z0, y0, x0, z1, y1, x1;
+  y0 = by;
+  z0 = bz;
+  x0 = r + bx;
+
+  double temp;
+
+  
+  int x;
+  for (x = 1; x <= i; x++)
+    {
+      temp = (double)x/i;
+      x1 = r * cos(2 * M_PI * temp) + bx;
+      z1 = r * sin(2 * M_PI * temp) + bz;
+      add_polygon(polygons, bx, by, bz,  x1, by, z1, x0, by, z0);
+      add_polygon(polygons, bx, by + h, bz, x0, by + h, z0, x1, by + h, z1);
+      add_polygon(polygons, x0, by, z0, x1, by, z1, x1, by + h, z1);
+      add_polygon(polygons, x0, by, z0, x1, by + h, z1, x0, by + h, z0);
+      
+      
+      x0 = x1;
+      z0 = z1;
+    }  
+}
+/*======== void add_cone() ==========
+Inputs:   
+double bx
+double by
+double bz
+double r
+double h
+int i
+
+Returns: 
+generates points for a cone with center(cx, cy, cz) and
+radius(r) and height(h).
+====================*/
+void add_cone(struct matrix * polygons,double bx, double by, double cz, double r, double h, int i)
+{
+  struct matrix *points = new_matrix(4, i * i);
+  double temp;
+  double z0, y0, x0, z1, y1, x1;  
+  y0 = by;
+  z0 = bz;
+  x0 = r + bx;
+
+  int x;
+  for (x = 1; x <= i; x++) {
+    temp = (double)x/i;
+    x1 = r * cos(2 * M_PI * temp) + bx;
+    z1 = r * sin(2 * M_PI * temp) + bz;
+    
+    add_polygon(polygons, x0, by, z0, x1, by, z1, bx, by + h, bz);
+    add_polygon(polygons, bx, by, bz,  x1, by, z1, x0, by, z0);
+    
+    x0 = x1;
+    z0 = z1;
+  } 
+}
 
 /*======== void add_box() ==========
   Inputs:   struct matrix * edges
