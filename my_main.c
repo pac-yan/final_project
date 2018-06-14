@@ -209,6 +209,7 @@ double get_val(struct vary_node *n, char *name) {
 void my_main() {
 
   int x,y;
+  struct vary_node **knobs;
   struct matrix *tmp;
   struct stack *systems;
   screen t;
@@ -219,9 +220,9 @@ void my_main() {
   g.blue = 0;
   double step_3d = 20;
   double theta;
-  double knob_value, xval, yval, zval;
+  double knob_value, xval, yval, zval, val;
 
-  SYMTAB *tab
+  SYMTAB *tab;
 
   //Lighting values here for easy access
   color ambient;
@@ -430,7 +431,6 @@ void my_main() {
 	  xval = op[x].op.scale.d[0];
 	  yval = op[x].op.scale.d[1];
 	  zval = op[x].op.scale.d[2];
-		 xval, yval, zval);
 	  if (op[x].op.scale.p != NULL)
 	    {
 	      tab = op[x].op.scale.p;
@@ -447,7 +447,6 @@ void my_main() {
 	case ROTATE:
 	  xval = op[x].op.rotate.axis;
 	  theta = op[x].op.rotate.degrees;
-		 xval, theta);
 	  if (op[x].op.rotate.p != NULL)
 	    {
 	      tab = op[x].op.rotate.p;
