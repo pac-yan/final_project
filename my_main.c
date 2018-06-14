@@ -39,7 +39,7 @@
 #include <string.h>
 #include "parser.h"
 #include "symtab.h"
-#include "y.tab.h"
+//#include "y.tab.h"
 
 #include "matrix.h"
 #include "ml6.h"
