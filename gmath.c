@@ -38,7 +38,7 @@ color get_lighting( double *normal, double *view, color alight, double light[2][
 	i.green = a.green + d.green + s.green;
 	i.blue = a.blue + d.blue + s.blue;
 
-	y++
+	y++;
 	  }
     }
   
